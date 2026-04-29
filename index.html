@@ -1085,25 +1085,27 @@
     .proof-header { padding:5rem 2rem 2rem; text-align:center; position:relative; z-index:10; }
     .proof-header .sh { margin-bottom:0.5rem; }
     .proof-sub { font-size:0.88rem; color:rgba(255,255,255,0.4); letter-spacing:0.02em; margin-top:0.5rem; }
-    .proof-tabs-bar {
-      display:flex; gap:0.75rem; justify-content:center;
-      padding:1.75rem 2rem 0; position:relative; z-index:10;
+    .proof-stage {
+      display:grid; grid-template-columns:1fr 1fr; gap:1.25rem;
+      padding:1.75rem 1.5rem 0; position:relative; z-index:10;
     }
-    .proof-tab {
-      padding:0.8rem 2rem; border-radius:10px;
-      border:1px solid rgba(255,255,255,0.1);
-      background:rgba(255,255,255,0.04);
-      color:rgba(255,255,255,0.5);
-      font-family:'Inter',sans-serif; font-size:0.82rem; font-weight:600;
-      cursor:pointer; letter-spacing:-0.01em;
-      transition:all 0.2s ease;
+    .proof-card {
+      display:flex; flex-direction:column;
+      height:84vh; min-height:560px;
+      border-radius:14px; overflow:hidden;
+      border:1px solid rgba(255,255,255,0.08);
+      background:rgba(255,255,255,0.03);
+      box-shadow:0 14px 36px rgba(0,0,0,0.28);
     }
-    .proof-tab:hover { background:rgba(255,255,255,0.08); color:rgba(255,255,255,0.82); }
-    .proof-tab.active { background:var(--blue); border-color:var(--blue); color:#fff; }
-    .proof-panes { margin-top:1.75rem; }
-    .proof-pane { display:none; height:86vh; min-height:560px; }
-    .proof-pane.active { display:block; }
-    .proof-pane iframe { width:100%; height:100%; border:none; display:block; }
+    .proof-card-hd {
+      display:flex; justify-content:space-between; align-items:baseline;
+      padding:0.85rem 1.2rem;
+      background:linear-gradient(180deg, rgba(10,17,40,0.88), rgba(10,17,40,0.62));
+      border-bottom:1px solid rgba(255,255,255,0.07);
+    }
+    .proof-card-name { font-size:0.86rem; font-weight:700; color:#fff; letter-spacing:-0.01em; }
+    .proof-card-unit { font-size:0.7rem; color:rgba(255,255,255,0.55); letter-spacing:0.06em; text-transform:uppercase; }
+    .proof-card iframe { flex:1; width:100%; border:none; display:block; background:#0A1128; }
 
     /* ─────────────────────────────────────
        COMMERCIAL ADVANTAGE
@@ -1302,7 +1304,8 @@
 
     @media (max-width:860px) {
       .comm-grid { grid-template-columns:1fr; }
-      .proof-tabs-bar { flex-direction:column; align-items:stretch; max-width:420px; margin:0 auto; }
+      .proof-stage { grid-template-columns:1fr; gap:1rem; padding:1.25rem 1rem 0; }
+      .proof-card { height:65vh; min-height:440px; }
       .int-banner { flex-direction:column; gap:0.9rem; }
     }
   </style>
@@ -1365,21 +1368,27 @@
   <div class="proof-header">
     <span class="lbl lbl-light">01 — The Proof</span>
     <h2 class="sh sh-light reveal">Already delivered.<br />Inside the Berkeley portfolio.</h2>
-    <p class="proof-sub">Two developments. Two live tours. Navigate between them below.</p>
+    <p class="proof-sub">Two developments. Both live. Explore them side by side.</p>
   </div>
-  <div class="proof-tabs-bar">
-    <button type="button" class="proof-tab active" data-pane="sqp">South Quay Plaza &nbsp;·&nbsp; Penthouse 53.01</button>
-    <button type="button" class="proof-tab" data-pane="wd">Woodberry Down &nbsp;·&nbsp; Riverside B2.19.04</button>
-  </div>
-  <div class="proof-panes">
-    <div class="proof-pane active" id="pane-sqp">
-      <iframe src="https://southquayplaza.see3d.ai/"
-              title="South Quay Plaza — See3D Interactive Tour"
+  <div class="proof-stage">
+    <div class="proof-card">
+      <div class="proof-card-hd">
+        <span class="proof-card-name">Woodberry Down</span>
+        <span class="proof-card-unit">Riverside &middot; B2.19.04</span>
+      </div>
+      <iframe src="https://woodberrydown.see3d.ai/"
+              title="Woodberry Down — See3D Interactive Tour"
+              loading="lazy"
               allow="fullscreen; xr-spatial-tracking"></iframe>
     </div>
-    <div class="proof-pane" id="pane-wd">
-      <iframe id="iframe-wd"
-              title="Woodberry Down — See3D Interactive Tour"
+    <div class="proof-card">
+      <div class="proof-card-hd">
+        <span class="proof-card-name">South Quay Plaza</span>
+        <span class="proof-card-unit">Penthouse &middot; 53.01</span>
+      </div>
+      <iframe src="https://southquayplaza.see3d.ai/"
+              title="South Quay Plaza — See3D Interactive Tour"
+              loading="lazy"
               allow="fullscreen; xr-spatial-tracking"></iframe>
     </div>
   </div>
@@ -1688,28 +1697,6 @@
     });
   }, { threshold: 0.12 });
   document.querySelectorAll('.reveal').forEach(el => io.observe(el));
-</script>
-
-<script>
-  /* Proof tabs — lazy-load Woodberry Down iframe on first tab switch */
-  const tabs = document.querySelectorAll('.proof-tab');
-  const panes = document.querySelectorAll('.proof-pane');
-  const wdIframe = document.getElementById('iframe-wd');
-  let wdLoaded = false;
-
-  tabs.forEach(tab => {
-    tab.addEventListener('click', () => {
-      tabs.forEach(t => t.classList.remove('active'));
-      panes.forEach(p => p.classList.remove('active'));
-      tab.classList.add('active');
-      const target = tab.dataset.pane;
-      document.getElementById('pane-' + target).classList.add('active');
-      if (target === 'wd' && !wdLoaded) {
-        wdIframe.src = 'https://woodberrydown.see3d.ai/';
-        wdLoaded = true;
-      }
-    });
-  });
 </script>
 
 <!-- ═══ HERO SPLAT CANVAS ═══ -->
