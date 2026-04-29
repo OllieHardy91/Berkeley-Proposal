@@ -1189,45 +1189,61 @@
       display:inline-block; margin-bottom:0.6rem;
     }
     .we-h { font-size:1.35rem; font-weight:700; color:var(--navy); letter-spacing:-0.018em; margin-bottom:0.85rem; }
-    .we-disclaim { font-size:0.79rem; color:var(--muted); line-height:1.62; margin:0; }
     .we-disclaim strong { color:var(--navy); font-weight:600; }
-    .we-src { color:var(--cyan); font-weight:600; text-decoration:none; border-bottom:1px solid rgba(74,216,255,0.35); white-space:nowrap; }
-    .we-src:hover { border-bottom-color:var(--cyan); }
 
     .we-source-row {
-      display:grid; grid-template-columns: 200px 1fr;
-      gap:1.6rem; align-items:start; margin:0 auto; max-width:780px;
-      text-align:left;
+      display:flex; flex-direction:column; align-items:center;
+      gap:1.5rem; margin:0 auto; max-width:780px;
     }
-    .we-source-thumb {
-      position:relative; display:block;
-      border-radius:10px; overflow:hidden;
-      border:1px solid var(--border);
-      box-shadow:0 4px 14px rgba(10,17,40,0.08);
-      transition:transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+    .we-source-embed {
+      display:block; width:100%; max-width:560px;
       text-decoration:none; color:inherit;
     }
-    .we-source-thumb img { display:block; width:100%; height:auto; }
+    .we-source-frame {
+      position:relative; width:100%; aspect-ratio:16/9;
+      border-radius:12px; overflow:hidden;
+      border:1px solid var(--border);
+      box-shadow:0 8px 24px rgba(10,17,40,0.12);
+      background:#F8FAFD;
+      transition:transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+    }
+    .we-source-frame img {
+      position:absolute; inset:0;
+      width:100%; height:100%;
+      object-fit:cover; object-position:center top;
+      display:block;
+    }
     .we-source-ov {
       position:absolute; inset:0;
-      background:linear-gradient(180deg, rgba(10,17,40,0) 0%, rgba(10,17,40,0.55) 60%, rgba(10,17,40,0.85) 100%);
-      display:flex; flex-direction:column; align-items:center; justify-content:flex-end;
-      gap:0.35rem; padding:0.85rem 0.75rem;
+      background:linear-gradient(180deg, rgba(10,17,40,0.05) 0%, rgba(10,17,40,0.55) 70%, rgba(10,17,40,0.85) 100%);
+      display:flex; align-items:flex-end; justify-content:center;
+      gap:0.45rem; padding:0.95rem 0.75rem;
       color:#fff; opacity:0; transition:opacity 0.25s ease;
-      font-size:0.78rem; font-weight:600; letter-spacing:0.02em;
+      font-size:0.82rem; font-weight:600; letter-spacing:0.02em;
     }
     .we-source-ov svg { color:var(--cyan); }
-    .we-source-thumb:hover { transform:translateY(-2px); box-shadow:0 10px 28px rgba(10,17,40,0.18); border-color:rgba(74,216,255,0.4); }
-    .we-source-thumb:hover .we-source-ov { opacity:1; }
+    .we-source-embed:hover .we-source-frame {
+      transform:translateY(-2px);
+      box-shadow:0 14px 32px rgba(10,17,40,0.2);
+      border-color:rgba(74,216,255,0.4);
+    }
+    .we-source-embed:hover .we-source-ov { opacity:1; }
     .we-source-cap {
-      font-size:0.66rem; font-weight:600; letter-spacing:0.06em; text-transform:uppercase;
-      color:var(--muted); text-align:center;
-      padding:0.55rem 0.5rem 0.45rem;
-      background:#F8FAFD; border-top:1px solid var(--border);
+      font-size:0.7rem; font-weight:600; letter-spacing:0.06em;
+      color:var(--muted); text-align:center; margin-top:0.65rem;
+    }
+    .we-source-url {
+      color:var(--cyan);
+      border-bottom:1px solid rgba(74,216,255,0.35);
+      transition:border-color 0.2s ease;
+    }
+    .we-source-embed:hover .we-source-url { border-bottom-color:var(--cyan); }
+    .we-disclaim {
+      font-size:0.79rem; color:var(--muted); line-height:1.62;
+      max-width:680px; margin:0; text-align:center;
     }
     @media (max-width:680px) {
-      .we-source-row { grid-template-columns:1fr; gap:1.1rem; }
-      .we-source-thumb { max-width:280px; margin:0 auto; }
+      .we-source-embed { max-width:100%; }
     }
     .we-stats {
       display:grid; grid-template-columns:repeat(4,1fr); gap:1rem;
@@ -1475,17 +1491,20 @@
         <span class="we-lbl">Worked example — observed portfolio</span>
         <h3 class="we-h">A snapshot of one Berkeley Group portfolio.</h3>
         <div class="we-source-row">
-          <a href="https://discover.matterport.com/account/MHDViTe3Cen" target="_blank" rel="noopener" class="we-source-thumb" aria-label="Open the live source page on Matterport">
-            <img src="BerkeleyLiveMatterport.png" alt="Berkeley Group IT shared spaces — live Matterport portal" loading="lazy" />
-            <div class="we-source-ov">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-              <span>View live source</span>
+          <a href="https://discover.matterport.com/account/MHDViTe3Cen" target="_blank" rel="noopener" class="we-source-embed" aria-label="Open the live source page on Matterport">
+            <div class="we-source-frame">
+              <img src="BerkeleyLiveMatterport.png" alt="Berkeley Group IT shared spaces — live Matterport portal" loading="lazy" />
+              <div class="we-source-ov">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                <span>View live source</span>
+              </div>
             </div>
-            <div class="we-source-cap">discover.matterport.com</div>
+            <div class="we-source-cap">
+              Live source — <span class="we-source-url">discover.matterport.com ↗</span>
+            </div>
           </a>
           <p class="we-disclaim">
-            Counted from a publicly visible portfolio under <em>Berkeley Group IT</em> on the third-party platform you currently use —
-            <a href="https://discover.matterport.com/account/MHDViTe3Cen" target="_blank" rel="noopener" class="we-src">view source ↗</a>.
+            Counted from a publicly visible portfolio under <em>Berkeley Group IT</em> on the third-party platform you currently use.
             We're aware Berkeley Group operates across multiple divisions and external partners; these specific tours may sit with another team and may not pertain to your division's current practices.
             The numbers below are <strong>illustrative of typical portfolio scale</strong>, not a comment on what your team is doing today.
           </p>
