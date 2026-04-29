@@ -1,0 +1,13 @@
+{
+  "clientName": "Berkeley",
+  "deployDir": "C:/Users/ollie/berkeley-deploy",
+  "repoUrl": "https://github.com/OllieHardy91/Berkeley-Proposal.git",
+  "sourceFile": "index.html",
+  "assets": [
+    "brand_assets/favicon-32-preview.png",
+    "brand_assets/See3D_Vector.png",
+    "brand_assets/Berkeley_Logos/optimized/berkeley-grey-400.png",
+    "brand_assets/Berkeley_Logos/optimized/berkeley-group-color.svg",
+    "BerkeleyLiveMatterport.png"
+  ]
+}
