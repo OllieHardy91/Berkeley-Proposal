@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>See3D × Berkeley Group — Cost-certain virtual tours</title>
-  <meta name="description" content="A proposal from See3D to the Berkeley Group: cost-certain virtual tours for sales, marketing and overseas enablement. CapEx, not OpEx." />
+  <title>See3D × Berkeley Group — Supply chain proposal</title>
+  <meta name="description" content="A proposal from See3D to join the Berkeley Group's supply chain — premium 360° interactive tours that complement existing CGI and interactive suites and ship as a permanent, transferable asset." />
   <meta name="robots" content="noindex, nofollow" />
   <link rel="icon" href="brand_assets/favicon-32-preview.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -29,6 +29,14 @@
       --border:  #E2ECF8;             /* See3D border */
       --muted:   #64748B;             /* See3D muted grey */
       --text:    #0A1128;             /* dark navy text */
+
+      /* See3D Electric Blue Gradient — official brand palette
+         Use only for accent animations, not site-wide chrome. */
+      --b-aqua:  #86FAF2;
+      --b-cyan:  #30E7ED;
+      --b-sky:   #00A6D7;
+      --b-blue:  #0058B3;
+      --b-deep:  #001B87;
     }
 
     html { scroll-behavior: smooth; }
@@ -239,6 +247,13 @@
       margin-bottom: 1.5rem;
     }
     .cov-h1 em { font-style: italic; color: var(--cyan); }
+    .cov-h1-mark {
+      display: inline-block;
+      width: 3.1em; height: 1.4em;
+      vertical-align: -0.42em;
+      margin-left: 0.15em;
+      background: url('brand_assets/Berkeley_Logos/optimized/berkeley-group-color-onnavy.svg') no-repeat right center / auto 100%;
+    }
     .cov-sub {
       font-size: 1.05rem; font-weight: 400;
       color: rgba(255,255,255,0.48);
@@ -1108,9 +1123,8 @@
     .proof-card iframe { flex:1; width:100%; border:none; display:block; background:#0A1128; }
 
     /* ─────────────────────────────────────
-       COMMERCIAL ADVANTAGE
+       COMMERCIAL ADVANTAGE — section removed; class defs retained as inert
     ───────────────────────────────────── */
-    #s-commercial { padding:7rem 0; background:var(--pale); }
     .comm-grid { display:grid; grid-template-columns:1fr 1fr; gap:2rem; margin-top:3rem; }
     .comm-card { border-radius:20px; padding:2.5rem; }
     .comm-dark  { background:linear-gradient(145deg,#0A1128,#0F1A35); border:1px solid rgba(30,64,175,0.2); }
@@ -1282,6 +1296,105 @@
     }
 
     /* ─────────────────────────────────────
+       WHAT'S INCLUDED — deliverables grid + pricing
+    ───────────────────────────────────── */
+    #s-included { padding:7rem 0; background:var(--pale); }
+    .inc-sub { font-size:0.96rem; color:#475569; line-height:1.7; max-width:680px; margin-top:0.7rem; }
+    .inc-grid {
+      display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem;
+      margin-top:2.5rem;
+    }
+    .inc-card {
+      background:#fff; border:1px solid var(--border); border-radius:16px;
+      padding:1.85rem 1.75rem; display:flex; flex-direction:column;
+      box-shadow:0 4px 16px rgba(10,17,40,0.05);
+      transition:box-shadow 0.25s ease, border-color 0.2s ease, transform 0.2s ease;
+    }
+    .inc-card:hover {
+      box-shadow:0 12px 32px rgba(10,17,40,0.09);
+      border-color:rgba(30,64,175,0.22);
+      transform:translateY(-2px);
+    }
+    /* Pending state — deep navy, low-key.
+       Each badge transitions to the lit cyan state when its card scrolls
+       into view, on a staggered 0.4s offset. After all 6 settle, they stay lit.
+       Reads as a checklist locking in, one step at a time. */
+    .inc-num {
+      position:relative;
+      display:inline-flex; align-items:center; justify-content:center;
+      width:42px; height:42px; border-radius:10px;
+      background-color: var(--b-deep);
+      color: rgba(255,255,255,0.72);
+      font-size:0.78rem; font-weight:800;
+      letter-spacing:0.04em;
+      margin-bottom:1.05rem;
+      box-shadow:
+        0 4px 14px rgba(0,27,135,0.28),
+        inset 0 1px 0 rgba(255,255,255,0.06);
+      transition:
+        background-color 2.8s cubic-bezier(0.22, 1, 0.36, 1),
+        box-shadow      2.8s cubic-bezier(0.22, 1, 0.36, 1),
+        color           1.6s ease;
+      transition-delay: var(--badge-delay, 0s);
+    }
+    .inc-num-t { position:relative; }
+    .inc-grid .inc-card.visible .inc-num {
+      background-color: var(--b-sky);
+      color: #fff;
+      box-shadow:
+        0 10px 28px rgba(0,166,215,0.5),
+        0 0 0 1px rgba(48,231,237,0.32),
+        inset 0 1px 0 rgba(255,255,255,0.3),
+        inset 0 -1px 0 rgba(0,27,135,0.32);
+      animation: incBadgeSettle 0.55s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+      animation-delay: calc(var(--badge-delay, 0s) + 2.2s);
+    }
+    .inc-grid .inc-card.visible .inc-num-t {
+      text-shadow: 0 1px 2px rgba(0,27,135,0.45);
+    }
+    @keyframes incBadgeSettle {
+      0%   { transform: scale(1); }
+      55%  { transform: scale(1.07); }
+      100% { transform: scale(1); }
+    }
+    .inc-grid .inc-card:nth-child(1) { --badge-delay: 0.40s; }
+    .inc-grid .inc-card:nth-child(2) { --badge-delay: 1.20s; }
+    .inc-grid .inc-card:nth-child(3) { --badge-delay: 2.00s; }
+    .inc-grid .inc-card:nth-child(4) { --badge-delay: 2.80s; }
+    .inc-grid .inc-card:nth-child(5) { --badge-delay: 3.60s; }
+    .inc-grid .inc-card:nth-child(6) { --badge-delay: 4.40s; }
+    .inc-h { font-size:1rem; font-weight:700; color:var(--navy); letter-spacing:-0.014em; margin-bottom:0.45rem; }
+    .inc-d { font-size:0.86rem; color:#475569; line-height:1.7; }
+
+    .inc-pricing {
+      margin:2.75rem auto 0; padding:1.5rem 1.7rem;
+      background:linear-gradient(135deg, var(--navy), var(--navy2));
+      border-radius:14px;
+      display:flex; align-items:flex-start; gap:1rem;
+      box-shadow:0 8px 28px rgba(10,17,40,0.18);
+    }
+    .inc-pricing-icon {
+      flex-shrink:0; display:inline-flex; align-items:center; justify-content:center;
+      width:34px; height:34px; border-radius:8px;
+      background:var(--cyan); color:#fff;
+      margin-top:0.1rem;
+    }
+    .inc-pricing-body { flex:1; }
+    .inc-pricing-h {
+      font-size:0.66rem; font-weight:700; letter-spacing:0.14em; text-transform:uppercase;
+      color:var(--cyan); margin-bottom:0.4rem;
+    }
+    .inc-pricing-p { font-size:0.92rem; color:rgba(255,255,255,0.78); line-height:1.7; }
+    .inc-pricing-p .inc-price { color:#fff; font-weight:700; }
+
+    @media (max-width:1023px) { .inc-grid { grid-template-columns:repeat(2,1fr); } }
+    @media (max-width:767px) {
+      .inc-grid { grid-template-columns:1fr; gap:1rem; }
+      .inc-pricing { flex-direction:column; gap:0.85rem; padding:1.4rem 1.5rem; }
+      .inc-card { padding:1.5rem 1.4rem; }
+    }
+
+    /* ─────────────────────────────────────
        INTEGRATION
     ───────────────────────────────────── */
     #s-integration { padding:7rem 0; background:var(--navy); overflow:hidden; position:relative; }
@@ -1327,7 +1440,7 @@
   <div class="nav-links">
     <a href="#s-proof">The Proof</a>
     <a href="#s-standards">Standards</a>
-    <a href="#s-commercial">Commercial</a>
+    <a href="#s-included">What's Included</a>
     <a href="#s-integration">Integration</a>
     <a href="#s12">Next Steps</a>
   </div>
@@ -1348,9 +1461,9 @@
            class="img-invert cov-logo-client"
            onerror="this.outerHTML='<span style=\'font-family:Inter,sans-serif;font-size:1.2rem;font-weight:500;color:#fff;letter-spacing:0.04em\'>Berkeley Group</span>'" />
     </div>
-    <p class="cov-eyebrow">A Proposal from See3D — April 2026</p>
-    <h1 class="cov-h1">Cost-certain<br />virtual tours <em>for the Berkeley Group</em></h1>
-    <p class="cov-sub">A proposal from See3D to join the Berkeley Group's supply chain — premium 360° interactive tours that complement existing CGI and interactive suites, enable overseas sales, and convert digital marketing assets from monthly OpEx into a clean, one-off CapEx.</p>
+    <p class="cov-eyebrow">A Proposal from See3D — May 2026</p>
+    <h1 class="cov-h1">Premium<br />virtual tours <em>for</em>&nbsp;<span class="cov-h1-mark" role="img" aria-label="Berkeley Group"></span></h1>
+    <p class="cov-sub">A proposal from See3D to join the Berkeley Group's supply chain — premium 360° interactive tours that complement existing CGI and interactive suites, enable overseas sales, and ship as a permanent, transferable asset.</p>
     <span class="cov-badge">
       <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
       Already delivered: South Quay Plaza · Woodberry Down
@@ -1401,43 +1514,43 @@
   <div class="container">
     <div class="sec-hdr-lft">
       <span class="lbl">02 — Standards</span>
-      <h2 class="sh sh-dark reveal">Five things you'll never see in a See3D tour.</h2>
-      <p class="std-sub reveal">These are the common 'tells' of a routine 360° capture. None of them appear in a See3D delivery — minimum deliverable standards apply to every project, without exception and without an extra invoice line.</p>
+      <h2 class="sh sh-dark reveal">Five standards built into every See3D delivery.</h2>
+      <p class="std-sub reveal">Minimum deliverable standards apply to every project, without exception and without an extra invoice line. The level of polish a premium buyer expects, baked in as the default — not an upgrade.</p>
     </div>
     <div class="std-list">
       <div class="std-row reveal">
-        <div class="std-no">No</div>
+        <div class="std-no">01</div>
         <div>
-          <div class="std-h">Camera, operator or tripod in reflections</div>
+          <div class="std-h">Clean reflections</div>
           <div class="std-d">Mirrored doors, polished marble, glass facades and bath panels — capture sequence is planned around them so See3D stays out of the picture. The buyer sees the unit, not the equipment that captured it.</div>
         </div>
       </div>
       <div class="std-row reveal d1">
-        <div class="std-no">No</div>
+        <div class="std-no">02</div>
         <div>
-          <div class="std-h">Untidy nadirs or zeniths</div>
-          <div class="std-d">Floor and ceiling pole points are cleaned in post-production. No circular patches in the spaces that buyers naturally look up or down at — a coffered ceiling reads as a coffered ceiling, not as a Matterport artefact.</div>
+          <div class="std-h">Tidy nadirs and zeniths</div>
+          <div class="std-d">Floor and ceiling pole points are cleaned in post-production. Coffered ceilings and detailed flooring read as designed — not as platform artefacts.</div>
         </div>
       </div>
       <div class="std-row reveal d2">
-        <div class="std-no">No</div>
+        <div class="std-no">03</div>
         <div>
-          <div class="std-h">Doors ajar, blinds half-set, surfaces dressed wrong</div>
-          <div class="std-d">Every site is staged before the first scan trigger. Doors positioned, blinds set, signage removed, surfaces prepped — the same care a stylist would bring to a show suite shoot, applied to every space.</div>
+          <div class="std-h">Site-staged before capture</div>
+          <div class="std-d">Doors positioned, blinds set, signage removed, surfaces prepped — the same care a stylist brings to a show suite shoot, applied to every space.</div>
         </div>
       </div>
       <div class="std-row reveal d3">
-        <div class="std-no">No</div>
+        <div class="std-no">04</div>
         <div>
-          <div class="std-h">Awkward navigation paths</div>
-          <div class="std-d">Scan points placed for natural buyer progression — not operator convenience. The viewer walks the property the way an agent would walk a client through it, with sightlines that flow.</div>
+          <div class="std-h">Natural navigation paths</div>
+          <div class="std-d">Scan points placed for buyer progression — not operator convenience. The viewer walks the property the way an agent would walk a client through it, with sightlines that flow.</div>
         </div>
       </div>
       <div class="std-row reveal d4">
-        <div class="std-no">No</div>
+        <div class="std-no">05</div>
         <div>
-          <div class="std-h">Entry-level hardware</div>
-          <div class="std-d">Realsee Galois M2 — 134 MP per scan point, ±20 mm LiDAR at 10 m. Specifically chosen for the level of detail premium buyers expect to see when they zoom into a finish, a fitting or a view.</div>
+          <div class="std-h">Premium hardware</div>
+          <div class="std-d">Realsee Galois M2 — 134 MP per scan point, ±20 mm LiDAR at 10 m. Specifically chosen for the level of detail premium buyers expect when they zoom into a finish, a fitting, or a view.</div>
         </div>
       </div>
     </div>
@@ -1446,138 +1559,62 @@
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="20 6 9 17 4 12"/></svg>
       </div>
       <div class="std-banner-txt">
-        <strong>Quality control is part of the deliverable, not an upsell.</strong> Every tour, every capture, every time.
+        <strong>Quality control is a deliverable standard, not an upsell.</strong> Every tour, every capture, every time.
       </div>
     </div>
   </div>
 </section>
 
 
-<!-- ═══ THE COMMERCIAL ADVANTAGE ═══ -->
-<section id="s-commercial">
+<!-- ═══ WHAT'S INCLUDED ═══ -->
+<section id="s-included">
   <div class="container">
-    <span class="lbl">03 — The Commercial Advantage</span>
-    <h2 class="sh sh-dark reveal">Turn virtual tours from an ongoing cost<br />into a permanent asset.</h2>
-    <div class="comm-grid">
-
-      <div class="comm-card comm-dark reveal">
-        <div class="comm-ey">See3D</div>
-        <div class="comm-bn">Pay once. Own forever.</div>
-        <ul class="comm-list">
-          <li>One-off project fee — no subscription, no renewal</li>
-          <li>Hosting included, free, indefinitely</li>
-          <li>CapEx classification — clean on the marketing P&amp;L</li>
-          <li>Full data export — self-host on Berkeley's own infrastructure if preferred</li>
-          <li>No lock-in. Your files, your asset, your call.</li>
-        </ul>
-        <div class="comm-stat">
-          <div class="comm-sv">£0</div>
-          <div class="comm-sl">Annual hosting cost — now and in 2035</div>
-        </div>
+    <div class="sec-hdr-lft">
+      <span class="lbl">03 — What's Included</span>
+      <h2 class="sh sh-dark reveal">Every See3D tour ships with the following.</h2>
+      <p class="inc-sub reveal">A flat per-tour fee covers everything from site visit to finished embed. No subscription, no platform tier, no per-space charge as the portfolio grows.</p>
+    </div>
+    <div class="inc-grid">
+      <div class="inc-card reveal">
+        <div class="inc-num"><span class="inc-num-t">01</span></div>
+        <div class="inc-h">Capture</div>
+        <div class="inc-d">Realsee Galois M2 — 134 MP per scan point, ±20 mm LiDAR. One day on site for a typical unit.</div>
       </div>
-
-      <div class="comm-card comm-light reveal d1">
-        <div class="comm-ey">The alternative</div>
-        <div class="comm-bn">Pay to keep the lights on.</div>
-        <ul class="comm-list">
-          <li>Subscription required to keep tours accessible</li>
-          <li>Per-space charges that compound as the portfolio grows</li>
-          <li>OpEx line on the marketing budget — every year, indefinitely</li>
-          <li>Cancel the subscription and the tours go dark</li>
-          <li>Hardware investment required on top of platform fees</li>
-        </ul>
-        <div class="comm-stat">
-          <div class="comm-sv">£3,700+</div>
-          <div class="comm-sl">Per year — just to maintain access to assets you already paid to create</div>
-        </div>
+      <div class="inc-card reveal d1">
+        <div class="inc-num"><span class="inc-num-t">02</span></div>
+        <div class="inc-h">Post-production</div>
+        <div class="inc-d">Reflections, nadirs and zeniths cleaned. Sky replacement and exterior tidying where required.</div>
       </div>
-
+      <div class="inc-card reveal d2">
+        <div class="inc-num"><span class="inc-num-t">03</span></div>
+        <div class="inc-h">Branded landing page</div>
+        <div class="inc-d">Each tour gets a See3D-hosted landing page styled to the development.</div>
+      </div>
+      <div class="inc-card reveal d3">
+        <div class="inc-num"><span class="inc-num-t">04</span></div>
+        <div class="inc-h">Embed-ready</div>
+        <div class="inc-d">Single iframe tag drops into any page, portal, or interactive sales presentation.</div>
+      </div>
+      <div class="inc-card reveal d4">
+        <div class="inc-num"><span class="inc-num-t">05</span></div>
+        <div class="inc-h">Full data export</div>
+        <div class="inc-d">Equirectangular imagery, point cloud (E57), and floor plan available on request — Berkeley's asset, Berkeley's call.</div>
+      </div>
+      <div class="inc-card reveal d5">
+        <div class="inc-num"><span class="inc-num-t">06</span></div>
+        <div class="inc-h">Perpetual hosting</div>
+        <div class="inc-d">Tours remain live on See3D infrastructure indefinitely. No renewal, no subscription tier, no expiry.</div>
+      </div>
     </div>
 
-    <!-- Worked example tied to observed Berkeley portfolio -->
-    <div class="we-block reveal">
-      <div class="we-header">
-        <span class="we-lbl">Worked example — observed portfolio</span>
-        <h3 class="we-h">A snapshot of one Berkeley Group portfolio.</h3>
-        <div class="we-source-row">
-          <a href="https://discover.matterport.com/account/MHDViTe3Cen" target="_blank" rel="noopener" class="we-source-embed" aria-label="Open the live source page on Matterport">
-            <div class="we-source-frame">
-              <img src="BerkeleyLiveMatterport.png" alt="Berkeley Group IT shared spaces — live Matterport portal" loading="lazy" />
-              <div class="we-source-ov">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-                <span>View live source</span>
-              </div>
-            </div>
-            <div class="we-source-cap">
-              Live source — <span class="we-source-url">discover.matterport.com ↗</span>
-            </div>
-          </a>
-          <p class="we-disclaim">
-            Counted from a publicly visible portfolio under <em>Berkeley Group IT</em> on the third-party platform you currently use.
-            We're aware Berkeley Group operates across multiple divisions and external partners; these specific tours may sit with another team and may not pertain to your division's current practices.
-            The numbers below are <strong>illustrative of typical portfolio scale</strong>, not a comment on what your team is doing today.
-          </p>
-        </div>
+    <div class="inc-pricing reveal">
+      <div class="inc-pricing-icon">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 7c0-5.333-8-5.333-8 0"/><path d="M10 7v14"/><path d="M6 21h12"/><path d="M6 13h10"/></svg>
       </div>
-
-      <div class="we-stats">
-        <div class="we-stat">
-          <div class="we-sv">28</div>
-          <div class="we-sl">tours visible in the observed portfolio</div>
-        </div>
-        <div class="we-stat">
-          <div class="we-sv">~£500</div>
-          <div class="we-sl">conservative commissioning cost per tour <em>(industry baseline for residential 360°)</em></div>
-        </div>
-        <div class="we-stat">
-          <div class="we-sv">£3,700</div>
-          <div class="we-sl">current annual platform fee <em>(equivalent Business-tier UK list, post-2025 update)</em></div>
-        </div>
-        <div class="we-stat">
-          <div class="we-sv">3–5 yrs</div>
-          <div class="we-sl">typical active lifespan for development marketing assets</div>
-        </div>
+      <div class="inc-pricing-body">
+        <div class="inc-pricing-h">Pricing</div>
+        <p class="inc-pricing-p">From <!-- TODO: Ollie to confirm starting price before sending --><span class="inc-price">£[INSERT_PRICE]</span> per unit, inclusive of all of the above. Multi-unit floors and full-development packages are quoted on volume — typically 15–25% below the per-unit rate depending on access logistics and unit count.</p>
       </div>
-
-      <div class="we-table">
-        <div class="we-tr we-tr-head">
-          <div class="we-tc"></div>
-          <div class="we-tc">Continue with current platform</div>
-          <div class="we-tc we-tc-us">Move to See3D</div>
-        </div>
-        <div class="we-tr">
-          <div class="we-tc we-tc-l">Initial commissioning (28 × ~£500)</div>
-          <div class="we-tc">£14,000 <em>(sunk)</em></div>
-          <div class="we-tc we-tc-us">£14,000 <em>(parity)</em></div>
-        </div>
-        <div class="we-tr">
-          <div class="we-tc we-tc-l">Year 1 hosting</div>
-          <div class="we-tc we-tc-warn">£3,700</div>
-          <div class="we-tc we-tc-us we-tc-good">£0</div>
-        </div>
-        <div class="we-tr">
-          <div class="we-tc we-tc-l">Cumulative — 3 years</div>
-          <div class="we-tc we-tc-warn">£11,100</div>
-          <div class="we-tc we-tc-us we-tc-good">£0</div>
-        </div>
-        <div class="we-tr">
-          <div class="we-tc we-tc-l">Cumulative — 5 years</div>
-          <div class="we-tc we-tc-warn">£18,500</div>
-          <div class="we-tc we-tc-us we-tc-good">£0</div>
-        </div>
-        <div class="we-tr">
-          <div class="we-tc we-tc-l">Branded landing page per tour</div>
-          <div class="we-tc">Not included</div>
-          <div class="we-tc we-tc-us we-tc-good">Included as standard</div>
-        </div>
-        <div class="we-tr">
-          <div class="we-tc we-tc-l">If the subscription is cancelled</div>
-          <div class="we-tc we-tc-warn">Tours go dark</div>
-          <div class="we-tc we-tc-us we-tc-good">Nothing changes</div>
-        </div>
-      </div>
-
-      <p class="we-note">Numbers are illustrative — based on the 28 tours visible in the observed portfolio at time of writing, plus current UK list price for the equivalent platform tier (~£3,700/yr post-2025 update). Actual commissioning rates and platform tier fees vary; the cumulative trajectory does not.</p>
     </div>
 
   </div>
@@ -1664,11 +1701,7 @@
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
           enquiries@see3d.ai
         </a>
-        <a href="tel:+447399067082" class="c-link">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.64 1.27h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.9a16 16 0 0 0 8 8l1-1a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-          +44 7399 067 082
-        </a>
-        <a href="https://www.see3d.ai" target="_blank" rel="noopener" class="c-link">
+<a href="https://www.see3d.ai" target="_blank" rel="noopener" class="c-link">
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
           see3d.ai
         </a>
@@ -1687,7 +1720,7 @@
          alt="Berkeley Group"
          class="img-invert ft-logo-client" />
   </div>
-  <div class="ft-copy">See3D × Berkeley Group — Proposal April 2026 &nbsp;·&nbsp; Confidential</div>
+  <div class="ft-copy">See3D × Berkeley Group — Proposal May 2026 &nbsp;·&nbsp; Confidential</div>
 </footer>
 
 <script>
