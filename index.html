@@ -234,9 +234,9 @@
     .cov-logos img { height: 44px; display: block; }
     .cov-logos .lsep { width: 1px; height: 32px; background: rgba(255,255,255,0.16); }
     .cov-eyebrow {
-      font-size: 0.68rem; font-weight: 600;
-      letter-spacing: 0.14em; text-transform: uppercase;
-      color: var(--cyan); margin-bottom: 1.25rem;
+      font-size: 0.7rem; font-weight: 600;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--b-cyan); margin-bottom: 1.25rem;
     }
     .cov-h1 {
       font-size: clamp(2.5rem, 5.5vw, 4rem);
@@ -249,7 +249,7 @@
     .cov-h1 em { font-style: italic; color: var(--cyan); }
     .cov-sub {
       font-size: 1.05rem; font-weight: 400;
-      color: rgba(255,255,255,0.48);
+      color: rgba(255,255,255,0.62);
       line-height: 1.76;
       max-width: 580px; margin: 0 auto 2.5rem;
     }
@@ -259,7 +259,7 @@
       background: rgba(255,255,255,0.05);
       border: 1px solid rgba(255,255,255,0.09);
       border-radius: 100px;
-      color: rgba(255,255,255,0.4); font-size: 0.76rem;
+      color: rgba(255,255,255,0.6); font-size: 0.76rem;
       animation: badgePulse 3.5s ease-in-out infinite;
     }
     .cov-scroll {
@@ -1046,6 +1046,12 @@
       .own-h2 { font-size:1.65rem; line-height:1.18; }
       .hw-h2  { font-size:1.65rem; line-height:1.18; }
       .cov-h1 { font-size:2rem; }
+      /* Cover lockup — shrink so the See3D | Berkeley pair fits a phone viewport.
+         Without this the Berkeley mark (66px tall) blew out cov-inner past the
+         section's overflow:hidden on ~390px screens. */
+      .cov-logos { gap:1.25rem; margin-bottom:2.5rem; }
+      .cov-logos img { height:36px; }
+      .cov-logo-client { height:46px !important; }
       /* TCO comparison columns — already 1fr from 860px breakpoint, just tighten padding */
       .tco-light, .tco-dark { padding:1.6rem 1.4rem; }
       .tco-bn { font-size:1.5rem; }
@@ -1454,7 +1460,7 @@
            class="img-invert cov-logo-client"
            onerror="this.outerHTML='<span style=\'font-family:Inter,sans-serif;font-size:1.2rem;font-weight:500;color:#fff;letter-spacing:0.04em\'>Berkeley Group</span>'" />
     </div>
-    <p class="cov-eyebrow">A Proposal from See3D — May 2026</p>
+    <p class="cov-eyebrow">Supply Chain Proposal · May 2026</p>
     <h1 class="cov-h1">Premium<br />virtual tours <em>for</em> Berkeley&nbsp;Group</h1>
     <p class="cov-sub">A proposal from See3D to join the Berkeley Group's supply chain — premium 360° interactive tours that complement existing CGI and interactive suites, enable overseas sales, and ship as a permanent, transferable asset.</p>
     <span class="cov-badge">
