@@ -233,10 +233,27 @@
     }
     .cov-logos img { height: 44px; display: block; }
     .cov-logos .lsep { width: 1px; height: 32px; background: rgba(255,255,255,0.16); }
+    @keyframes eyebrowShimmer {
+      from { background-position: 100% center; }
+      to   { background-position: 0% center; }
+    }
     .cov-eyebrow {
-      font-size: 0.7rem; font-weight: 600;
-      letter-spacing: 0.18em; text-transform: uppercase;
-      color: var(--b-cyan); margin-bottom: 1.25rem;
+      font-size: 0.68rem; font-weight: 600;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      background: linear-gradient(
+        90deg,
+        var(--b-sky) 40%,
+        rgba(200,240,255,0.9) 47%,
+        #fff 50%,
+        rgba(200,240,255,0.9) 53%,
+        var(--b-sky) 60%
+      );
+      background-size: 400% auto;
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: eyebrowShimmer 3.5s linear infinite;
+      margin-bottom: 1.25rem;
     }
     .cov-h1 {
       font-size: clamp(2.5rem, 5.5vw, 4rem);
@@ -249,7 +266,7 @@
     .cov-h1 em { font-style: italic; color: var(--cyan); }
     .cov-sub {
       font-size: 1.05rem; font-weight: 400;
-      color: rgba(255,255,255,0.62);
+      color: rgba(255,255,255,0.48);
       line-height: 1.76;
       max-width: 580px; margin: 0 auto 2.5rem;
     }
@@ -259,7 +276,7 @@
       background: rgba(255,255,255,0.05);
       border: 1px solid rgba(255,255,255,0.09);
       border-radius: 100px;
-      color: rgba(255,255,255,0.6); font-size: 0.76rem;
+      color: rgba(255,255,255,0.4); font-size: 0.76rem;
       animation: badgePulse 3.5s ease-in-out infinite;
     }
     .cov-scroll {
@@ -962,6 +979,7 @@
       .gt-thread-path, .gt-thread-highlight { animation:none; stroke-dashoffset:0; }
       .gt-thread-head { opacity:1; transform:translate(-50%, 0) scale(1); transition:none; }
       .gt-item-check { background:rgba(34,197,94,0.12); border-color:rgba(34,197,94,0.55); color:#16a34a; transition:none; }
+      .cov-eyebrow { animation:none; background:none; color:var(--b-sky); -webkit-text-fill-color:var(--b-sky); }
     }
     .gt-intro-p strong { color:var(--text); font-weight:600; }
     .gt-act-banner {
@@ -1031,11 +1049,6 @@
     @media (max-width:520px) {
       .opp-stats { grid-template-columns:1fr; }
       .cov-h1 { font-size:2.2rem; }
-      /* Slim nav lockup so it doesn't dominate the phone viewport */
-      .nav-pair { gap:0.9rem; }
-      .nav-pair img { height:20px; }
-      .nav-logo-client { height:30px !important; }
-      .nav-pair .nsep { height:16px; }
       /* Tighter container — claw back ~24px of horizontal real estate */
       .container, .opp-wrap { padding:0 1.25rem; }
       /* Halve the vertical section padding everywhere */
@@ -1051,12 +1064,6 @@
       .own-h2 { font-size:1.65rem; line-height:1.18; }
       .hw-h2  { font-size:1.65rem; line-height:1.18; }
       .cov-h1 { font-size:2rem; }
-      /* Cover lockup — shrink so the See3D | Berkeley pair fits a phone viewport.
-         Without this the Berkeley mark (66px tall) blew out cov-inner past the
-         section's overflow:hidden on ~390px screens. */
-      .cov-logos { gap:1.25rem; margin-bottom:2.5rem; }
-      .cov-logos img { height:36px; }
-      .cov-logo-client { height:46px !important; }
       /* TCO comparison columns — already 1fr from 860px breakpoint, just tighten padding */
       .tco-light, .tco-dark { padding:1.6rem 1.4rem; }
       .tco-bn { font-size:1.5rem; }
@@ -1369,6 +1376,20 @@
     .inc-grid .inc-card:nth-child(6) { --badge-delay: 4.40s; }
     .inc-h { font-size:1rem; font-weight:700; color:var(--navy); letter-spacing:-0.014em; margin-bottom:0.45rem; }
     .inc-d { font-size:0.86rem; color:#475569; line-height:1.7; }
+    .inc-img {
+      margin: -1.85rem -1.75rem 1.2rem;
+      border-radius: 14px 14px 0 0;
+      height: 160px;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+    .inc-img img {
+      width: 100%; height: 100%;
+      object-fit: cover; display: block;
+      transition: transform 0.45s ease;
+    }
+    .inc-card:hover .inc-img img { transform: scale(1.04); }
+    .inc-grid .inc-card:nth-child(3) .inc-img img { object-position: center top; }
 
     .inc-pricing {
       margin:2.75rem auto 0; padding:1.5rem 1.7rem;
@@ -1466,7 +1487,7 @@
            onerror="this.outerHTML='<span style=\'font-family:Inter,sans-serif;font-size:1.2rem;font-weight:500;color:#fff;letter-spacing:0.04em\'>Berkeley Group</span>'" />
     </div>
     <p class="cov-eyebrow">Supply Chain Proposal · May 2026</p>
-    <h1 class="cov-h1">Premium<br />virtual tours <em>for</em> Berkeley&nbsp;Group</h1>
+    <h1 class="cov-h1">Premium<br />virtual tours <em>for</em><br />Berkeley Group</h1>
     <p class="cov-sub">A proposal from See3D to join the Berkeley Group's supply chain — premium 360° interactive tours that complement existing CGI and interactive suites, enable overseas sales, and ship as a permanent, transferable asset.</p>
     <span class="cov-badge">
       <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
@@ -1484,7 +1505,7 @@
 <section id="s-proof">
   <div class="proof-header">
     <span class="lbl lbl-light">01 — The Proof</span>
-    <h2 class="sh sh-light reveal">Already delivered.<br />Inside the Berkeley portfolio.</h2>
+    <h2 class="sh sh-light reveal">Already delivered.<br />Two live Berkeley sites.</h2>
     <p class="proof-sub">Two developments. Both live. Explore them side by side.</p>
   </div>
   <div class="proof-stage">
@@ -1580,31 +1601,37 @@
     </div>
     <div class="inc-grid">
       <div class="inc-card reveal">
+        <div class="inc-img"><img src="Section_3/Photoshop_Galois_M2.png" alt="Realsee Galois M2 scanner" loading="lazy"></div>
         <div class="inc-num"><span class="inc-num-t">01</span></div>
         <div class="inc-h">Capture</div>
         <div class="inc-d">Realsee Galois M2 — 134 MP per scan point, ±20 mm LiDAR. One day on site for a typical unit.</div>
       </div>
       <div class="inc-card reveal d1">
+        <div class="inc-img"><img src="Section_3/index52_2026-05-02.jpg" alt="Post-production cleaned panorama" loading="lazy"></div>
         <div class="inc-num"><span class="inc-num-t">02</span></div>
         <div class="inc-h">Post-production</div>
         <div class="inc-d">Reflections, nadirs and zeniths cleaned. Sky replacement and exterior tidying where required.</div>
       </div>
       <div class="inc-card reveal d2">
+        <div class="inc-img"><img src="Section_3/woodberry_landing.png" alt="See3D branded landing page — Woodberry Down" loading="lazy"></div>
         <div class="inc-num"><span class="inc-num-t">03</span></div>
         <div class="inc-h">Branded landing page</div>
         <div class="inc-d">Each tour gets a See3D-hosted landing page styled to the development.</div>
       </div>
       <div class="inc-card reveal d3">
+        <div class="inc-img"><img src="Section_3/toursnapshot.jpeg" alt="Tour embedded in a sales page" loading="lazy"></div>
         <div class="inc-num"><span class="inc-num-t">04</span></div>
         <div class="inc-h">Embed-ready</div>
         <div class="inc-d">Single iframe tag drops into any page, portal, or interactive sales presentation.</div>
       </div>
       <div class="inc-card reveal d4">
+        <div class="inc-img"><img src="Section_3/pointcloud.jpg" alt="E57 point cloud data export" loading="lazy"></div>
         <div class="inc-num"><span class="inc-num-t">05</span></div>
         <div class="inc-h">Full data export</div>
         <div class="inc-d">Equirectangular imagery, point cloud (E57), and floor plan available on request — Berkeley's asset, Berkeley's call.</div>
       </div>
       <div class="inc-card reveal d5">
+        <div class="inc-img"><img src="Section_3/perpetual_hosting.svg" alt="Perpetual hosting — no expiry" loading="lazy"></div>
         <div class="inc-num"><span class="inc-num-t">06</span></div>
         <div class="inc-h">Perpetual hosting</div>
         <div class="inc-d">Tours remain live on See3D infrastructure indefinitely. No renewal, no subscription tier, no expiry.</div>
