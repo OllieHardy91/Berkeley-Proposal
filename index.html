@@ -1417,6 +1417,10 @@
       .inc-grid { grid-template-columns:1fr; gap:1rem; }
       .inc-pricing { flex-direction:column; gap:0.85rem; padding:1.4rem 1.5rem; }
       .inc-card { padding:1.5rem 1.4rem; }
+      /* Image's negative margins must match the card's mobile padding,
+         otherwise the image overhangs the card edges and the corners
+         don't line up. */
+      .inc-img { margin:-1.5rem -1.4rem 1.1rem; }
     }
 
     /* ─────────────────────────────────────
